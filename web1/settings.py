@@ -122,7 +122,7 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CSRF_TRUSTED_ORIGINS = ['tlmpro-prod-qubitspace-bwrcdx.mo5.mogenius.io']
+CSRF_TRUSTED_ORIGINS = ['https://tlmpro-prod-qubitspace-bwrcdx.mo5.mogenius.io']
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     
