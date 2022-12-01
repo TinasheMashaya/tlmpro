@@ -1,0 +1,469 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- student-dashboard-my-courses21:54  -->
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Student Dashboard-My Courses</title>
+
+	<!-- Css Files -->
+	<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+    
+   
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/color.css' %}" rel="stylesheet">
+    
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">>
+</head>
+
+<body>
+
+	<!--// Main Wrapper \\-->
+	<div class="wm-main-wrapper">
+
+		<!--// Header \\-->
+		<header id="wm-header" class="wm-header-one">
+
+
+			<!--// MainHeader \\-->
+			<div class="wm-main-header">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3"><a href="index-2.html" class="wm-logo"><img src="static/images/logo-5.png"
+									alt=""></a></div>
+						<div class="col-md-9">
+							<!--// Navigation \\-->
+							<nav class="navbar navbar-default">
+								<div class="navbar-header">
+									<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+										data-target="#navbar-collapse-1" aria-expanded="true">
+										<span class="sr-only">Toggle navigation</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+									</button>
+								</div>
+								<div class="collapse navbar-collapse" id="navbar-collapse-1">
+									<ul class="nav navbar-nav">
+										<li class="active"><a href="#">Home</a>
+											<ul class="wm-dropdown-menu">
+												<li><a href="{% url 'home' %}">Home</a></li>
+
+											</ul>
+										</li>
+										<li><a href="#">Degree Programs</a>
+											<ul class="wm-dropdown-menu">
+												<li><a href="{% url 'degree_programs' %}">Degree Progams</a></li>
+
+											</ul>
+										</li>
+
+										<li><a href="#">Student Dashboard</a>
+											<ul class="wm-dropdown-menu">
+												<li><a href="{% url 'student_dashboard' %}">Programs</a></li>
+
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</nav>
+							<!--// Navigation \\-->
+							<a  class="wm-header-btn" data-toggle="modal" data-target="#ModalLogin">
+								{% block includes %}
+                                {{ login }}
+                                {% endblock includes %}
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--// MainHeader \\-->
+
+		</header>
+		<!--// Header \\-->
+
+		<!--// Mini Header \\-->
+		<div class="wm-mini-header">
+			<span class="wm-blue-transparent"></span>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="wm-mini-title">
+							<h1>Student Dashboard</h1>
+						</div>
+						<div class="wm-breadcrumb">
+							<ul>
+								<li><a href="{% url 'degree_programs' %}">Home</a></li>
+								<li><a href="#">Student Dashboard</a></li>
+								<li>My Dashboard</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--// Mini Header \\-->
+
+		<!--// Main Content \\-->
+		<div class="wm-main-content">
+
+			<!--// Main Section \\-->
+			<div class="wm-main-section">
+				<div class="container">
+					<div class="row">
+						<aside class="col-md-4">
+							<div class="wm-student-dashboard-nav">
+								<div class="wm-student-nav">
+									<figure>
+										<a href="#"><img src="https://cdn3d.iconscout.com/3d/premium/thumb/graduate-student-6368706-5250853.png" alt=""></a>
+									</figure>
+									<div class="wm-student-nav-text">
+										<h6>Tinashe Mashaya</h6>
+										<a href="#">Update Image</a>
+									</div>
+									<ul>
+										<li>
+											<a href="{% url 'dashboard_courses' %}">
+												<i class="wmicon-avatar"></i>
+												Courses on offer
+											</a>
+										</li>
+
+
+									</ul>
+								</div>
+							</div>
+						</aside>
+						<div class="col-md-8">
+							<div class="wm-student-dashboard-courses wm-dashboard-courses">
+								<div class="wm-plane-title">
+									<h2 id="mycourse" onclick="upload()">My Courses</h2>
+
+								</div>
+								<div class="wm-article">
+									<ul>
+										<li class="wm-courses-start wm-student">
+											<span>Course Name</span>
+										</li>
+										<li class="wm-student">
+											<span>Status</span>
+										</li>
+										<li class="wm-student">
+											<span>Rating</span>
+										</li>
+									</ul>
+								</div>
+								<div class="wm-article">
+									{% for data in con %}
+									<ul>
+										<li class="wm-courses-start">
+											<div class="wm-statement-started-text">
+												<h6><a href="#">{{data.course_name}}</a></h6>
+												<a href={% url 'upload' %}  id="assignment">
+													<div id="assignment" >
+													<span>
+													
+													<time datetime="2017-02-14" href="#">{{data.assignment}}</time>
+														
+													</span>
+													<span>{{data.due_date}}</span>
+													
+												</div>	
+												</a>					
+											</div>
+											
+										</li>
+										<li>
+											<a class="wm-status-courses wm-paid" href="#">{{data.rating}}</a>
+										</li>
+										<li>
+											<small>{{data.grading}}</small>
+										</li>
+									</ul>
+									{% endfor %}						
+								</div>
+
+								<div id="myModal" class="modal">
+
+									<!-- Modal content -->
+									<div class="modal-content">
+										<span class="close">&times;</span>
+										<p>Some text in the Modal..</p>
+									</div>
+
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--// Main Section \\-->
+
+			<!--// Main Section \\-->
+		</div>
+		<!--// Main Content \\-->
+
+		<!--// Footer \\-->
+		<footer id="wm-footer" class="wm-footer-one">
+
+			<!--// FooterNewsLatter \\-->
+			<div class="wm-footer-newslatter">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<form>
+								<i class="wmicon-interface2"></i>
+								<input type="text" value="Enter your e-mail address"
+									onblur="if(this.value == '') { this.value ='Enter your e-mail address'; }"
+									onfocus="if(this.value =='Enter your e-mail address') { this.value = ''; }">
+								<input type="submit" value="Subscribe to our newsletter">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--// FooterNewsLatter \\-->
+			<!--// FooterCopyRight \\-->
+			<div class="wm-copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6"> <span><i class="wmicon-nature"></i> Team TLM</span> </div>
+						<div class="col-md-6">
+							<p><a target="_blank" href="#">Made by TLM(Tinash,Larry and Malvern) with ❤️</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--// FooterCopyRight \\-->
+
+		</footer>
+		<!--// Footer \\-->
+
+		<div class="clearfix"></div>
+	</div>
+	<!--// Main Wrapper \\-->
+
+	<!-- ModalLogin Box -->
+	<div class="modal fade" id="ModalLogin" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+
+					<div class="wm-modallogin-form wm-login-popup">
+						<span class="wm-color">Login to Your Account</span>
+						<form>
+							<ul>
+								<li> <input type="text" value="Your Username"
+										onblur="if(this.value == '') { this.value ='Your Username'; }"
+										onfocus="if(this.value =='Your Username') { this.value = ''; }"> </li>
+								<li> <input type="password" value="password"
+										onblur="if(this.value == '') { this.value ='password'; }"
+										onfocus="if(this.value =='password') { this.value = ''; }"> </li>
+								<li> <a href="#" class="wm-forgot-btn">Forgot Password?</a> </li>
+								<li> <input type="submit" value="Sign In"> </li>
+							</ul>
+						</form>
+						<span class="wm-color">or try our socials</span>
+						<ul class="wm-login-social-media">
+							<li><a href="#"><i class="wmicon-social5"></i> Facebook</a></li>
+							<li class="wm-twitter-color"><a href="#"><i class="wmicon-social4"></i> twitter</a></li>
+							<li class="wm-googleplus-color"><a href="#"><i class="fa fa-google-plus-square"></i>
+									Google+</a></li>
+						</ul>
+						<p>Not a member yet? <a href="#">Sign-up Now!</a></p>
+					</div>
+					<div class="wm-modallogin-form wm-register-popup">
+						<span class="wm-color">create Your Account today</span>
+						<form>
+							<ul>
+								<li> <input type="text" value="Your Username"
+										onblur="if(this.value == '') { this.value ='Your Username'; }"
+										onfocus="if(this.value =='Your Username') { this.value = ''; }"> </li>
+								<li> <input type="text" value="Your E-mail"
+										onblur="if(this.value == '') { this.value ='Your E-mail'; }"
+										onfocus="if(this.value =='Your E-mail') { this.value = ''; }"> </li>
+								<li> <input type="password" value="password"
+										onblur="if(this.value == '') { this.value ='password'; }"
+										onfocus="if(this.value =='password') { this.value = ''; }"> </li>
+								<li> <input type="text" value="Confirm Password"
+										onblur="if(this.value == '') { this.value ='Confirm Password'; }"
+										onfocus="if(this.value =='Confirm Password') { this.value = ''; }"> </li>
+								<li> <input type="submit" value="Create Account"> </li>
+							</ul>
+						</form>
+						<span class="wm-color">or signup with your socials:</span>
+						<ul class="wm-login-social-media">
+							<li><a href="#"><i class="wmicon-social5"></i> Facebook</a></li>
+							<li class="wm-twitter-color"><a href="#"><i class="wmicon-social4"></i> twitter</a></li>
+							<li class="wm-googleplus-color"><a href="#"><i class="fa fa-google-plus-square"></i>
+									Google+</a></li>
+						</ul>
+						<p>Already a member? <a href="#">Sign-in Here!</a></p>
+					</div>
+
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<!-- ModalLogin Box -->
+
+	<!-- ModalSearch Box -->
+	<div class="modal fade" id="ModalSearch" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+
+					<div class="wm-modallogin-form">
+						<span class="wm-color">Search Your KeyWord</span>
+						<form>
+							<ul>
+								<li> <input type="text" value="Keywords..."
+										onblur="if(this.value == '') { this.value ='Keywords...'; }"
+										onfocus="if(this.value =='Keywords...') { this.value = ''; }"> </li>
+								<li> <input type="submit" value="Search"> </li>
+							</ul>
+						</form>
+					</div>
+
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<!-- ModalSearch Box -->
+
+	<!-- jQuery (necessary for JavaScript plugins) -->
+	<script type="text/javascript" src="static/script/jquery.js"></script>
+	<script type="text/javascript" src="static/script/modernizr.js"></script>
+	<script type="text/javascript" src="static/script/bootstrap.min.js"></script>
+	<script type="text/javascript" src="static/script/jquery.prettyphoto.js"></script>
+	<script type="text/javascript" src="static/script/jquery.countdown.min.js"></script>
+	<script type="text/javascript" src="static/script/fitvideo.js"></script>
+	<script type="text/javascript" src="static/script/skills.js"></script>
+	<script type="text/javascript" src="static/script/slick.slider.min.js"></script>
+	<script type="text/javascript" src="static/script/waypoints-min.js"></script>
+	<script type="text/javascript" src="static/build/mediaelement-and-player.min.js"></script>
+	<script type="text/javascript" src="static/script/isotope.min.js"></script>
+	<script type="text/javascript" src="static/script/jquery.nicescroll.min.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+	<script type="text/javascript" src="static/script/functions.js"></script>
+	<script>
+		const allCourses =
+			[
+				{
+					course: "Introduction to programming",
+					status: "In progress",
+					grading: "---",
+					assignment: "Assignment 1",
+					due_date: "Due 12/12/2022",
+
+
+				},
+				{
+					course: "Advanced Computer Architecture",
+					status: "Completed",
+					grading: "76",
+					duration: "Assignment 1",
+					due_date: "Submitted 18 hourls Late",
+
+
+				},
+				{
+					course: "Artificial Intelligence",
+					status: "Completed",
+					grading: "76",
+					assignment: "Assignment 3",
+					due_date: "Submitted 16 hours early",
+
+
+				},
+				{
+					course: "Quantum Computing",
+					status: "Up Coming",
+					grading: "---",
+					assignment: "No Assignment",
+					due_date: "Waiting",
+
+
+				},
+				{
+					course: "WEB",
+					status: "Up Coming",
+					grading: "---",
+					assignment: "No Assignment",
+					due_date: "Waiting",
+
+
+				}
+
+
+
+			]
+		const courses = document.querySelector(".coursesy")
+		const showHtml = allCourses.map((project, index) => {
+			return `<ul>
+				<li class="wm-courses-start">
+					<div class="wm-statement-started-text">
+						<h6><a href="#">${project.course}</a></h6>
+						<a href={% url 'upload' %}  id="assignment">
+							<div id="assignment" >
+							<span>
+							
+							<time datetime="2017-02-14" href="#">${project.assignment}</time>
+								
+							</span>
+							<span>${project.due_date}</span>
+							
+						</div>	
+						</a>					
+					</div>
+					
+				</li>
+				<li>
+					<a class="wm-status-courses wm-paid" href="#">${project.status}</a>
+				</li>
+				<li>
+					<small>${project.grading}</small>
+				</li>
+			</ul>`
+			if (project.assignment != "No Assignment" && project.status != "Completed") {
+
+				var element = document.getElementById("assignment");
+				element.style.backgroundColor = "#000000";
+			}
+
+
+		})
+		courses.innerHTML = showHtml
+	</script>
+
+	<script>
+		function myFunction() {
+			// let d = new Date();
+			// alert("Today's date is " + d);
+			var x = document.getElementById("myDIV");
+			var element = document.getElementById("assignment");
+			// element.in
+			if (x.style.display === "none") {
+				x.style.display = "block";
+			} else {
+				x.style.display = "none";
+			}
+		}
+	</script>
+
+
+</body>
+
+<!-- student-dashboard-my-courses21:55  -->
+
+</html>
