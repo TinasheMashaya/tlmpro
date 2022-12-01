@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-hcn3+1$4=_ynb=do)1ktj2$=c$+omefzuz29wsg3i)h62r_kv%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tlmwebproject-prod-qubitspace-bwrcdx.mo5.mogenius.io','0.0.0.0']
+ALLOWED_HOSTS = ['tlmpro-prod-qubitspace-bwrcdx.mo5.mogenius.io','0.0.0.0']
 
 
 # Application definition
@@ -122,7 +122,7 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CSRF_TRUSTED_ORIGINS = ['https://tlmwebproject-prod-qubitspace-bwrcdx.mo5.mogenius.io']
+CSRF_TRUSTED_ORIGINS = ['tlmpro-prod-qubitspace-bwrcdx.mo5.mogenius.io']
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     
